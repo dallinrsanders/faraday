@@ -1,7 +1,7 @@
 import datetime
 import logging
 
-from itsdangerous import TimedJSONWebSignatureSerializer
+from itsdangerous import URLSafeTimedSerializer as TimedJSONWebSignatureSerializer
 from flask import Blueprint, request
 from flask_security.utils import hash_data
 from flask import current_app as app

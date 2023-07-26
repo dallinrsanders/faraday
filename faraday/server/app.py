@@ -10,7 +10,8 @@ import pyotp
 import requests
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-from itsdangerous import TimedJSONWebSignatureSerializer, SignatureExpired, BadSignature
+from itsdangerous.url_safe import URLSafeTimedSerializer as Serializer
+from itsdangerous import SignatureExpired, BadSignature
 from random import SystemRandom
 
 from faraday.server.config import LOCAL_CONFIG_FILE, copy_default_config_to_local
@@ -418,7 +419,7 @@ def create_app(db_connection_string=None, testing=None):
 
     app.limiter = Limiter(
         app,
-        key_func=get_remote_address,
+        #key_func='127.0.0.1',
         default_limits=[]
     )
     if not testing:
